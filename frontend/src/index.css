@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cyber-bg text-cyber-text font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0d1321; }
+  ::-webkit-scrollbar-thumb { background: #1e2d45; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+}
+
+@layer components {
+  .card {
+    @apply bg-cyber-card border border-cyber-border rounded-xl p-5;
+  }
+
+  .btn-primary {
+    @apply bg-cyber-accent hover:bg-cyan-400 text-cyber-bg font-semibold px-4 py-2 rounded-lg
+           transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply border border-cyber-border hover:border-cyber-accent text-cyber-text hover:text-cyber-accent
+           font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply bg-cyber-red hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg
+           transition-all duration-200;
+  }
+
+  .input-field {
+    @apply bg-cyber-surface border border-cyber-border text-cyber-text rounded-lg px-4 py-2.5
+           focus:outline-none focus:border-cyber-accent focus:ring-1 focus:ring-cyan-500/30
+           placeholder-cyber-muted transition-all duration-200 w-full;
+  }
+
+  .badge-critical { @apply bg-red-900/40 text-red-400 border border-red-800/50 text-xs font-mono px-2 py-0.5 rounded; }
+  .badge-high     { @apply bg-orange-900/40 text-orange-400 border border-orange-800/50 text-xs font-mono px-2 py-0.5 rounded; }
+  .badge-medium   { @apply bg-yellow-900/40 text-yellow-400 border border-yellow-800/50 text-xs font-mono px-2 py-0.5 rounded; }
+  .badge-low      { @apply bg-blue-900/40 text-blue-400 border border-blue-800/50 text-xs font-mono px-2 py-0.5 rounded; }
+  .badge-informational { @apply bg-slate-800/60 text-slate-400 border border-slate-700/50 text-xs font-mono px-2 py-0.5 rounded; }
+
+  .glow-text { @apply text-cyber-accent animate-glow; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}

@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: vulnguard-backend
+    restart: unless-stopped
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-please-change-in-production-abcdef123456}
+      JWT_SECRET: ${JWT_SECRET:-please-change-jwt-secret-abcdef123456}
+      JWT_EXPIRES_HOURS: ${JWT_EXPIRES_HOURS:-12}
+      CORS_ORIGINS: "http://localhost,http://localhost:80"
+      FLASK_DEBUG: "0"
+    volumes:
+      - vulnguard_db:/app/instance
+      - vulnguard_reports:/app/reports/generated
+    networks:
+      - vulnguard-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vulnguard-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - vulnguard-net
+
+networks:
+  vulnguard-net:
+    driver: bridge
+
+volumes:
+  vulnguard_db:
+  vulnguard_reports:

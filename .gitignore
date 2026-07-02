@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Flask
+backend/instance/*.db
+backend/.env
+backend/reports/generated/*.pdf
+backend/reports/generated/*.csv
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Env
+.env
+*.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
